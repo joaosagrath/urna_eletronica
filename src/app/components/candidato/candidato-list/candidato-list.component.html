@@ -1,0 +1,33 @@
+<app-candidato-form></app-candidato-form>
+<br>
+<div class="container">
+    <table class="table align-middle p-3 mb-2 bg-primary bg-gradient text-white">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Numero</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for (candidato of lista; track $index) {
+              <tr>
+                <th scope="row">{{ $index + 1 }}</th>
+                <td>{{ candidato.nomeCompleto }}</td>
+                <td>{{ candidato.numero }}</td>
+                <td>{{ candidato.cargo }}</td>
+                <td [width]="250">
+                  <button type="button" class="btn btn-warning btn-floating" mdbRipple>
+                    <i class="fas fa-pen"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-floating" mdbRipple>
+                    <i class="far fa-trash-can"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+        </tbody>
+      </table>
+</div>

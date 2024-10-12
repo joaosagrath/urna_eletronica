@@ -1,0 +1,45 @@
+<app-eleitor-form></app-eleitor-form>
+<br>
+<div class="container">
+    <table class="table align-middle p-3 mb-2 bg-primary bg-gradient text-white">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="col-medium">Nome</th>
+            <th scope="col" class="col-medium">CPF</th>
+            <th scope="col" class="col-small">Profissão</th>
+            <th scope="col" class="col-medium">Telefone Celular</th>
+            <th scope="col" class="col-medium">Telefone Fixo</th>
+            <th scope="col" class="col-medium">Email</th>
+            <th scope="col" class="col-small">Status</th>
+            <th scope="col" class="col-large">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Laço para exibir a lista de eleitores -->
+          @for (eleitor of lista; track $index){
+          <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>{{ eleitor.nomeCompleto }}</td>
+            <td>{{ eleitor.cpf }}</td>
+            <td>{{ eleitor.profissao }}</td>
+            <td>{{ eleitor.telefoneCelular }}</td>
+            <td>{{ eleitor.telefoneFixo }}</td>
+            <td>{{ eleitor.email }}</td>
+            <td>{{ eleitor.status }}</td>
+            <td>
+                <button type="button" class="btn btn-warning btn-floating" mdbRipple>
+                    <i class="fas fa-pen"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-floating" mdbRipple>
+                    <i class="far fa-trash-can"></i>
+                  </button>
+            </td>
+
+            
+
+          </tr>
+        }
+        </tbody>
+      </table>
+</div>

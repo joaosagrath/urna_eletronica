@@ -1,0 +1,44 @@
+<br>
+
+<div class="container-flex container-top">
+    <div>
+        <ngx-charts-bar-horizontal
+            [view]="[600, 200]"
+            [results]="graficoPrefeito"
+            [gradient]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxisLabel]="'Prefeito'"
+            [yAxisLabel]="'Votos'">
+        </ngx-charts-bar-horizontal>
+
+        <br>
+        <!-- Gráfico de porcentagem de votos dos candidatos a prefeito -->
+        <ngx-charts-bar-horizontal
+            [view]="[600, 200]"
+            [results]="graficoPrefeitoPercentual"
+            [gradient]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxisLabel]="'Prefeito'"
+            [yAxisLabel]="'% Votos'">
+        </ngx-charts-bar-horizontal>
+        <br>
+    </div>
+
+    <ngx-charts-bar-horizontal
+        [view]="[600, 400]"
+        [results]="graficoVereador"
+        [gradient]="false"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Vereador'"
+        [yAxisLabel]="'Votos'">
+    </ngx-charts-bar-horizontal>
+</div>
