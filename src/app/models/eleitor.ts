@@ -6,5 +6,6 @@ export class Eleitor {
   telefoneCelular!: string;
   telefoneFixo!: string;
   email!: string;
-  status!: string
+  status!: string;
+  foto!: string
 }

@@ -23,6 +23,7 @@ export class CandidatoListComponent {
   getAllCandidatos(): void {
     this.candidatosService.getAllCandidatos().subscribe({
       next: (data) => {
+        console.log("Lista de candidatos carregada:", data); // Log para verificar os dados recebidos
         this.lista = data; // Supondo que a API retorne uma lista de candidatos
       },
       error: (error) => {
@@ -30,5 +31,13 @@ export class CandidatoListComponent {
         alert('Erro ao carregar candidatos. Verifique sua conexão ou tente novamente mais tarde.');
       }
     });
+  }
+
+  onCandidatoSalvo(): void {
+    console.log("Evento candidatoSalvo capturado. Atualizando a lista...");
+    // Adicionando um delay de 1 segundo para dar tempo ao backend para atualizar a lista
+    setTimeout(() => {
+      this.getAllCandidatos();
+    }, 1000);
   }
 }

@@ -1,28 +1,29 @@
 <br>
 <form #candidatoForm="ngForm" (ngSubmit)="salvarCandidato()" class="container conteiner-flex container-top">
-  <mdb-form-control>
-    <input mdbInput type="text" name="candidatoNome" class="form-control input-width" [(ngModel)]="candidato.nomeCompleto" #candidatoNome="ngModel" required />
+  <mdb-form-control> 
+    <input mdbInput type="text" name="candidatoNome" class="form-control input-width" [(ngModel)]="candidato.nomeCompleto" />
     <label mdbLabel class="form-label" for="candidatoNome">Nome do Candidato</label>
+</mdb-form-control>
+<mdb-form-control>
+    <input mdbInput type="number" name="candidatoNumero" class="form-control" [(ngModel)]="candidato.numero" />
+    <label mdbLabel class="form-label" for="candidatoNumero">Numero do Candidato</label>
+</mdb-form-control>
 
-  </mdb-form-control>
-
-  <mdb-form-control>
-    <input mdbInput type="number" name="candidatoNumero" class="form-control" [(ngModel)]="candidato.numero" #candidatoNumero="ngModel" required />
-    <label mdbLabel class="form-label" for="candidatoNumero">Número do Candidato</label>
-
-  </mdb-form-control>
-
-  <mdb-form-control>
-    <select mdbInput name="candidatoCargo" class="form-control" [(ngModel)]="candidato.cargo" #candidatoCargo="ngModel" required>
-      <option value="" selected disabled></option>
+<mdb-form-control>
+    <select mdbInput name="candidatoCargo" class="form-control" [(ngModel)]="candidato.cargo">
+      <option value="" selected></option>
       <option value="Prefeito">Prefeito</option>
       <option value="Vereador">Vereador</option>
     </select>
     <label mdbLabel class="form-label" for="candidatoCargo">Cargo do Candidato</label>
+</mdb-form-control>
 
-  </mdb-form-control>
+<!-- Input para a foto -->
+<mdb-form-control>
+  <input type="file" mdbInput name="foto" class="form-control" (change)="onFileChange($event)" />
+  <label mdbLabel class="form-label" for="foto"></label>
+</mdb-form-control>
 
-  <button class="btn btn-outline-primary" type="submit" [disabled]="candidatoForm.invalid" data-mdb-ripple-color="dark">
-    Salvar
-  </button>
+
+<button class="btn btn-outline-primary" type="button" (click)="salvarCandidato()">Salvar</button>
 </form>

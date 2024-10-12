@@ -19,7 +19,7 @@ export class CandidatosService {
     return this.http.get<Candidato[]>(this.API_GET);
   }
 
-  salvarCandidato(candidato: Candidato): Observable<Candidato> {
-    return this.http.post<Candidato>(this.API_POST, candidato);
+  salvarCandidato(formData: FormData): Observable<Candidato> {
+    return this.http.post<Candidato>(this.API_POST, formData);
   }
 }
