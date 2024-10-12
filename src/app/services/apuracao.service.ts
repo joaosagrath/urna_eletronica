@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { withFetch } from '@angular/common/http'; // Adicione isso
 import { Observable } from 'rxjs';
 import { Apuracao } from '../models/apuracao';
 

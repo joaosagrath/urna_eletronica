@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { EleitorFormComponent } from '../eleitor-form/eleitor-form.component';
-import { Eleitor } from '../../models/eleitor';
-import { EleitoresService } from '../../services/eleitores.service';
-import { error } from 'console';
+import { Eleitor } from '../../../models/eleitor';
+import { EleitoresService } from '../../../services/eleitores.service';
+
 
 @Component({
   selector: 'app-eleitor-list',

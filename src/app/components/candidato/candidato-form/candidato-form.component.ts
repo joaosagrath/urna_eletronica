@@ -14,8 +14,8 @@ export class CandidatoFormComponent {
 
 import { Component } from '@angular/core';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { CandidatosService } from '../../services/candidatos.service';
-import { Candidato } from '../../models/candidato';
+import { CandidatosService } from '../../../services/candidatos.service';
+import { Candidato } from '../../../models/candidato';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';

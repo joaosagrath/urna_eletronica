@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule } from '@angular/common/http';
-import { ApuracaoService } from "../../services/apuracao.service";
-import { withFetch } from '@angular/common/http'; // Adicione isso
+import { ApuracaoService } from "../../../services/apuracao.service";
 
 interface Candidato {
   id: number;

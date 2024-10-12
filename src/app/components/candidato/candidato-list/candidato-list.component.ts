@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { Candidato } from '../../models/candidato';
+import { Candidato } from '../../../models/candidato';
 import { CandidatoFormComponent } from '../candidato-form/candidato-form.component';
-import { CandidatosService } from '../../services/candidatos.service';
+import { CandidatosService } from '../../../services/candidatos.service';
 
 @Component({
   selector: 'app-candidato-list',
