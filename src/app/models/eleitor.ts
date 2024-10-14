@@ -1,5 +1,4 @@
 export class Eleitor {
-  id!: number;
   nomeCompleto!: string;
   cpf!: string;
   profissao!: string;

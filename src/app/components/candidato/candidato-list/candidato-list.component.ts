@@ -2,14 +2,16 @@ import { Component, inject } from '@angular/core';
 import { Candidato } from '../../../models/candidato';
 import { CandidatoFormComponent } from '../candidato-form/candidato-form.component';
 import { CandidatosService } from '../../../services/candidatos.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-candidato-list',
   standalone: true,
-  imports: [CandidatoFormComponent],
+  imports: [CandidatoFormComponent, CommonModule],
   templateUrl: './candidato-list.component.html',
   styleUrls: ['./candidato-list.component.scss']
 })
+
 export class CandidatoListComponent {
   lista: Candidato[] = [];
   

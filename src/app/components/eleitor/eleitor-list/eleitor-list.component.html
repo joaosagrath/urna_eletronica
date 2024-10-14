@@ -1,4 +1,4 @@
-<app-eleitor-form></app-eleitor-form>
+<app-eleitor-form (eleitorSalvo)="onEleitorSalvo()"></app-eleitor-form>
 <br>
 <div class="container">
     <table class="table align-middle p-3 mb-2 bg-primary bg-gradient text-white">
@@ -12,6 +12,7 @@
             <th scope="col" class="col-medium">Telefone Fixo</th>
             <th scope="col" class="col-medium">Email</th>
             <th scope="col" class="col-small">Status</th>
+            <th scope="col" class="col-small">Foto</th>
             <th scope="col" class="col-large">Ações</th>
           </tr>
         </thead>
@@ -28,7 +29,13 @@
             <td>{{ eleitor.email }}</td>
             <td>{{ eleitor.status }}</td>
             <td>
-                <button type="button" class="btn btn-warning btn-floating" mdbRipple>
+              <img *ngIf="eleitor.foto" [src]="'http://localhost:8080/fotoEleitor/' 
+                + eleitor.foto" alt="Foto do Eleitor" style="width: 80px; height: auto;" 
+                class="rounded-pic"/>
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning btn-floating" mdbRipple
+                (click)="abrirModal(eleitor)">
                     <i class="fas fa-pen"></i>
                   </button>
                   <button type="button" class="btn btn-danger btn-floating" mdbRipple>

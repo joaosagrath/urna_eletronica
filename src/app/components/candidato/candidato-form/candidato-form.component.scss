@@ -8,9 +8,35 @@
     display: flex;
     justify-content: space-around;
 }
-
+ 
 .form-outline {
     margin: 0px 10px 0 0;
     position: relative;
     width: 81%;
+}
+
+.rounded-pic {
+    width: 100px;   /* Define a largura da imagem */
+    height: 100px;  /* Define a altura da imagem */
+    border-radius: 50%; /* Faz com que a imagem fique redonda */
+    object-fit: cover;  /* Garante que a imagem seja cortada se necessário para caber no círculo */
+    border: 2px solid #ccc; /* Opcional: Adiciona uma borda ao redor */
+  }
+
+
+/* Estilo para orientação vertical */
+@media (orientation: portrait) {
+
+    .conteiner-flex{
+        width: 100%;
+        display: grid;
+        justify-content: space-around;
+    }
+
+    .form-outline {
+        margin: 0px 0 10px 0;
+        position: relative;
+        width: 100%;
+    }
+    
 }

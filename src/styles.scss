@@ -1,3 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@fortawesome/fontawesome-free/css/all.css';
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+.rounded-pic {
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+  }

@@ -1,14 +1,16 @@
 <app-candidato-form (candidatoSalvo)="onCandidatoSalvo()"></app-candidato-form>
 
 <br>
+
 <div class="container">
-    <table class="table align-middle p-3 mb-2 bg-primary bg-gradient text-white">
+    <table class="table align-middle p-3 mb-2 bg-primary bg-gradient text-white display-desk">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Numero</th>
             <th scope="col">Cargo</th>
+            <th scope="col">Foto</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
@@ -19,7 +21,13 @@
                 <td>{{ candidato.nomeCompleto }}</td>
                 <td>{{ candidato.numero }}</td>
                 <td>{{ candidato.cargo }}</td>
-                <td [width]="250">
+                <td>
+                  <img *ngIf="candidato.foto" [src]="'http://localhost:8080/fotoCandidato/' 
+                    + candidato.foto" alt="Foto do Candidato" style="width: 80px; height: auto;" 
+                    class="rounded-pic"/>
+                </td>
+                
+                  <td [width]="250">
                   <button type="button" class="btn btn-warning btn-floating" mdbRipple>
                     <i class="fas fa-pen"></i>
                   </button>
@@ -30,5 +38,36 @@
               </tr>
             }
         </tbody>
-      </table>
-</div>
+    </table>
+    
+    
+    <div class="row display-mobile">
+      <div class="col-12 card-block">
+        
+          @for (candidato of lista; track $index) {
+            <div class="card m-3 card-inner">
+              <div class="row g-0">
+                <div class="col-7 p-1">
+                  <h5 class="card-title">#{{ $index + 1 }}</h5>
+                  <p class="card-text"><strong>Nome:</strong> {{ candidato.nomeCompleto }}</p>
+                  <p class="card-text"><strong>Número:</strong> {{ candidato.numero }}</p>
+                  <p class="card-text"><strong>Cargo:</strong> {{ candidato.cargo }}</p>
+                </div>
+
+                <div class="col-5 text-center p-2">
+                  <img *ngIf="candidato.foto" [src]="'http://localhost:8080/fotoCandidato/' + candidato.foto"
+                    alt="Foto do Candidato" style="width: 150px; height: auto;" class="img-fluid rounded-pic"/>
+                    <button type="button" class="btn btn-warning btn-floating me-2" mdbRipple>
+                      <i class="fas fa-pen"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-floating" mdbRipple>
+                      <i class="far fa-trash-can"></i>
+                    </button>
+                  </div>
+              
+              </div>
+            </div>
+          }
+        
+      </div>
+    </div>

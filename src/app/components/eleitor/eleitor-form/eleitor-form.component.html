@@ -1,36 +1,86 @@
 <br />
 <div class="container conteiner-flex container-top">
     <mdb-form-control>
-        <input mdbInput type="text" name="candidatoNome" class="form-control input-width" />
-        <label mdbLabel class="form-label" for="candidatoNome">Nome do Candidato</label>
-    </mdb-form-control>
-    <mdb-form-control>
-        <input mdbInput type="text" name="candidatoNumero" class="form-control" />
-        <label mdbLabel class="form-label" for="candidatoNumero">CPF</label>
-    </mdb-form-control>
-    <mdb-form-control>
-        <input mdbInput type="text" name="candidatoNumero" class="form-control" />
-        <label mdbLabel class="form-label" for="candidatoNumero">Profissão</label>
+        <input 
+            mdbInput 
+            type="text" 
+            name="eleitorNome" 
+            class="form-control input-width" 
+            [(ngModel)]="eleitor.nomeCompleto" />
+        <label mdbLabel class="form-label" for="eleitorNome">Nome do Eleitor</label>
     </mdb-form-control>
 
-      
+    <mdb-form-control>
+        <input 
+            mdbInput 
+            type="text" 
+            name="eleitorCPF" 
+            class="form-control" 
+            [(ngModel)]="eleitor.cpf" 
+            mask="000.000.000-00" />
+        <label mdbLabel class="form-label" for="eleitorCPF">CPF</label>
+    </mdb-form-control>
+
+    <mdb-form-control>
+        <input 
+            mdbInput 
+            type="text" 
+            name="eleitorProfissao" 
+            class="form-control" 
+            [(ngModel)]="eleitor.profissao" />
+        <label mdbLabel class="form-label" for="eleitorProfissao">Profissão</label>
+    </mdb-form-control>
 </div>
-<br>
-<div class="container conteiner-flex">
 
+<br />
+<div class="container conteiner-flex">
     <mdb-form-control>
-        <input mdbInput type="text" name="candidatoNome" class="form-control input-width" />
-        <label mdbLabel class="form-label" for="candidatoNome">Tel. Celular</label>
+        <input 
+            mdbInput 
+            type="text" 
+            name="eleitorTelefoneCelular" 
+            class="form-control input-width" 
+            [(ngModel)]="eleitor.telefoneCelular" 
+            mask="(00) 00000-0000" />
+        <label mdbLabel class="form-label" for="eleitorTelefoneCelular">Tel. Celular</label>
     </mdb-form-control>
     
     <mdb-form-control>
-        <input mdbInput type="text" name="candidatoNumero" class="form-control" />
-        <label mdbLabel class="form-label" for="candidatoNumero">Tel. Fixo</label>
-    </mdb-form-control>
-    <mdb-form-control>
-        <input mdbInput type="text" name="candidatoNumero" class="form-control" />
-        <label mdbLabel class="form-label" for="candidatoNumero">Email</label>
+        <input 
+            mdbInput 
+            type="text" 
+            name="eleitorTelefoneFixo" 
+            class="form-control" 
+            [(ngModel)]="eleitor.telefoneFixo" 
+            mask="(00) 0000-0000" />
+        <label mdbLabel class="form-label" for="eleitorTelefoneFixo">Tel. Fixo</label>
     </mdb-form-control>
 
-    <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark">Salvar</button>
+    <mdb-form-control>
+        <input 
+            mdbInput 
+            type="text" 
+            name="eleitorEmail" 
+            class="form-control" 
+            [(ngModel)]="eleitor.email" />
+        <label mdbLabel class="form-label" for="eleitorEmail">Email</label>
+    </mdb-form-control>
+
+    <mdb-form-control>
+        <input 
+            type="file" 
+            mdbInput 
+            name="foto" 
+            class="form-control" 
+            (change)="onFileChange($event)" />
+        <label mdbLabel class="form-label" for="foto"></label>
+    </mdb-form-control>
+
+    <button 
+        class="btn btn-outline-primary" 
+        type="button" 
+        (click)="salvarEleitor()" 
+        data-mdb-ripple-color="dark">
+        Salvar
+    </button>
 </div>

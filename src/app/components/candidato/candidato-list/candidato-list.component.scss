@@ -7,3 +7,54 @@
 .btn{
     margin: 0px 10px 0 0;
 }
+
+.rounded-pic {
+    width: 100px;   /* Define a largura da imagem */
+    height: 100px;  /* Define a altura da imagem */
+    border-radius: 50%; /* Faz com que a imagem fique redonda */
+    object-fit: cover;  /* Garante que a imagem seja cortada se necessário para caber no círculo */
+    border: 2px solid #ccc; /* Opcional: Adiciona uma borda ao redor */
+  }
+
+  .display-desk{
+    display: table;
+  }
+  
+  .display-mobile{
+    display: none;
+  }
+
+/* Estilo para orientação vertical */
+@media (orientation: portrait) {
+    
+    .display-desk{
+        display: none;
+      }
+
+    .display-mobile{
+        display: block;
+    }
+
+    .card-block {
+        margin: 10px;
+        width: 93%;
+        border-radius: 15px;
+        border: 2px solid #3b71ca;
+        border-bottom-style: ridge;
+    }
+
+    .conteiner-flex{
+        width: 100%;
+        display: grid;
+        justify-content: space-around;
+    }
+
+    .card-inner[_ngcontent-ng-c795626772] {
+        top: -5px;
+        left: -16px;
+        width: 100%;
+        border-radius: 15px;
+        border: 2px solid #3b71ca;
+        border-bottom-style: ridge;
+    }
+}
