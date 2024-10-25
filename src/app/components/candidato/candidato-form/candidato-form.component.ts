@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { CandidatosService } from '../../../services/candidatos.service';
 import { Candidato } from '../../../models/candidato';
@@ -6,27 +6,51 @@ import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-candidato-form',
   standalone: true,
   imports: [MdbFormsModule, FormsModule, HttpClientModule, CommonModule],
   templateUrl: './candidato-form.component.html',
-  styleUrls: ['./candidato-form.component.scss']
+  styleUrls: ['./candidato-form.component.scss'],
+  providers: [provideNgxMask()]
 })
 
 export class CandidatoFormComponent {
   
-
-  candidato: Candidato = new Candidato();
-
-  // Evento para notificar quando o candidato for salvo
+  @Input() candidato: Candidato = new Candidato();
   @Output() candidatoSalvo: EventEmitter<void> = new EventEmitter<void>();
 
   selectedFile: File | null = null; // Para armazenar o arquivo selecionado
   imageSrc: any;
+  
+  @Input() isModalOpen: boolean = false;
 
-  constructor(private candidatosService: CandidatosService) {}
+  // INJECT
+  candidatosService = inject(CandidatosService);
+  rotaAtivada = inject(ActivatedRoute);
+
+  constructor() { 
+    let id = this.rotaAtivada.snapshot.params["id"];
+    console.log("ID do candidato:", id);
+    if (id > 0)
+      this.getCandidatoById(id);
+  }
+
+  // Método para buscar os dados do eleitor pelo ID
+  getCandidatoById(id: number): void {
+    this.candidatosService.findById(id).subscribe({
+      next: (data: Candidato) => {
+        this.candidato = data;  // Preencher os inputs com os dados retornados
+      },
+      error: (error) => {
+        console.error('Erro ao buscar candidato:', error);
+        alert('Erro ao buscar candidato. Tente novamente mais tarde.');
+      }
+    });
+  }
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -81,9 +105,11 @@ export class CandidatoFormComponent {
   
   limparFormulario() {
     this.candidato = {
+      id: 0,
       nomeCompleto: '',
       numero: 0,
       cargo: '',
+      status: '',
       foto: ''
     };
     this.selectedFile = null; // Limpa o arquivo selecionado

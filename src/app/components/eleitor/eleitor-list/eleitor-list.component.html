@@ -1,52 +1,65 @@
 <app-eleitor-form (eleitorSalvo)="onEleitorSalvo()"></app-eleitor-form>
-<br>
+<br />
 <div class="container">
-    <table class="table align-middle p-3 mb-2 bg-primary bg-gradient text-white">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col" class="col-medium">Nome</th>
-            <th scope="col" class="col-medium">CPF</th>
-            <th scope="col" class="col-small">Profissão</th>
-            <th scope="col" class="col-medium">Telefone Celular</th>
-            <th scope="col" class="col-medium">Telefone Fixo</th>
-            <th scope="col" class="col-medium">Email</th>
-            <th scope="col" class="col-small">Status</th>
-            <th scope="col" class="col-small">Foto</th>
-            <th scope="col" class="col-large">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Laço para exibir a lista de eleitores -->
-          @for (eleitor of lista; track $index){
-          <tr>
-            <th scope="row">{{ $index + 1 }}</th>
-            <td>{{ eleitor.nomeCompleto }}</td>
-            <td>{{ eleitor.cpf }}</td>
-            <td>{{ eleitor.profissao }}</td>
-            <td>{{ eleitor.telefoneCelular }}</td>
-            <td>{{ eleitor.telefoneFixo }}</td>
-            <td>{{ eleitor.email }}</td>
-            <td>{{ eleitor.status }}</td>
-            <td>
-              <img *ngIf="eleitor.foto" [src]="'http://localhost:8080/fotoEleitor/' 
-                + eleitor.foto" alt="Foto do Eleitor" style="width: 80px; height: auto;" 
-                class="rounded-pic"/>
-            </td>
-            <td>
-                <button type="button" class="btn btn-warning btn-floating" mdbRipple
-                (click)="abrirModal(eleitor)">
-                    <i class="fas fa-pen"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-floating" mdbRipple>
-                    <i class="far fa-trash-can"></i>
-                  </button>
-            </td>
+	<table class="table align-middle table-sm bg-primary bg-gradient text-white">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col" class="col-medium">Nome</th>
+				<th scope="col" class="col-medium">CPF</th>
+				<th scope="col" class="col-small">Profissão</th>
+				<th scope="col" class="col-large">Contato</th>
+				<th scope="col" class="col-small">Status</th>
+				<th scope="col" class="col-small">Foto</th>
+				<th scope="col" class="col-large">Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Laço para exibir a lista de eleitores -->
+			@for (eleitor of lista; track $index){
+			<tr>
+				<th scope="row">{{ $index + 1 }}</th>
+				<td>{{ eleitor.nomeCompleto }}</td>
+				<td>{{ eleitor.cpf }}</td>
+				<td>{{ eleitor.profissao }}</td>
+				<td>
+					{{ eleitor.telefoneCelular }}
+					<br />
+					{{ eleitor.telefoneFixo }}
+					<br />
+					{{ eleitor.email }}
+				</td>
+				<td>{{ eleitor.status }}</td>
+				<td>
+					<img
+						*ngIf="eleitor.foto"
+						[src]="'http://localhost:8080/fotoEleitor/' + eleitor.foto"
+						alt="Foto do Eleitor"
+						style="width: 80px; height: auto"
+						class="rounded-pic"
+					/>
+				</td>
+				<td>
+					<a (click)="editar(eleitor)" class="btn btn-warning btn-floating">
+						<i class="fas fa-pen"></i>
+					</a>
 
-            
-
-          </tr>
-        }
-        </tbody>
-      </table>
+					<button id="deletarEleitor" type="button" class="btn btn-danger btn-floating" mdbRipple (click)="deleteById(eleitor)">
+						<i class="far fa-trash-can"></i>
+					</button>
+				</td>
+			</tr>
+			}
+		</tbody>
+	</table>
 </div>
+
+<ng-template #modalEleitoresForm>
+	<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Editar Eleitor</h5>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+	</div>
+	<div class="modal-body">
+		<app-eleitor-form [isModalOpen]="true" [eleitor]="eleitorEdit" (eleitorSalvo)="retornoForm()"></app-eleitor-form>
+	</div>
+</ng-template>

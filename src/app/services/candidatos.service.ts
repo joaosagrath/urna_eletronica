@@ -8,18 +8,26 @@ import { Candidato } from '../models/candidato';
 })
 
 export class CandidatosService {
+
   http = inject(HttpClient)
 
-  API_GET = 'http://localhost:8080/api/candidatos/todos';
-  API_POST = 'http://localhost:8080/api/candidatos/salvar';
+  API = 'http://localhost:8080/api/candidatos';
 
   constructor() { }
 
+  findById(id: number) {
+    return this.http.get<Candidato>(`${this.API}/findById/${id}`);
+  }
+
+  findByNumero(numero: number) {
+    return this.http.get<Candidato>(`${this.API}/findByNumero/${numero}`);
+  }
+
   getAllCandidatos(): Observable<Candidato[]> {
-    return this.http.get<Candidato[]>(this.API_GET);
+    return this.http.get<Candidato[]>(`${this.API}/todos`);
   }
 
   salvarCandidato(formData: FormData): Observable<Candidato> {
-    return this.http.post<Candidato>(this.API_POST, formData);
+    return this.http.post<Candidato>(`${this.API}/salvar`, formData);
   }
 }

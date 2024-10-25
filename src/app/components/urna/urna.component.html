@@ -1,0 +1,68 @@
+<div class="container">
+	<div class="row justify-content-center card-body">
+		<div class="col-md-6">
+			<div class="conteiner-flex">
+				<h2>Digite seu CPF</h2>
+				<div class="btn-group">
+					<input mdbRadio type="radio" class="btn-check" name="options" id="impresso" 
+						   autocomplete="off" [checked]="true" (change)="onRadioChange($event)" />
+					<label class="btn btn-secondary" for="impresso">Voto Impresso</label>
+					
+					<input mdbRadio type="radio" class="btn-check" name="options" id="naoImpresso"
+						   autocomplete="off" (change)="onRadioChange($event)" />
+					<label class="btn btn-secondary" for="naoImpresso">Voto Não-Impresso</label>
+				  </div>
+			</div>
+			<form (ngSubmit)="validateCpf(cpf)">
+				<mdb-form-control>
+					<input mdbInput type="text" name="eleitorCPF" class="form-control" [(ngModel)]="cpf" mask="000.000.000-00" />
+					<label mdbLabel class="form-label" for="eleitorCPF">CPF</label>
+				</mdb-form-control>
+				<br />
+				<div>
+					<button class="btn btn-outline-primary" style="width: 49%" type="submit" data-mdb-ripple-color="dark">Validar</button>
+					<button class="btn btn-outline-primary" style="width: 49%" type="button" (click)="clearPin()">Voltar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Exibe o pinpad somente se o eleitor for valido-->
+@if (eleitor){
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<div class="mt-4">
+				<h6>Eleitor Encontrado: {{ eleitor.nomeCompleto }}</h6>
+				<h5>Digite o número do {{ isVotingForVereador ? 'Vereador' : isVotingForPrefeito ? 'Prefeito' : '' }}: {{ pin }}</h5>
+				<div class="keypad">
+					<div class="row">
+						<!-- Loop para criar os 10 botoes do pinpad-->
+						@for (num of numbers; track $index){
+						<button class="btn btn-outline-primary m-2 col-3" (click)="addPin(num)">
+							{{ num }}
+						</button>
+						}
+					</div>
+					<div class="row mt-2">
+						<button class="btn btn-danger col-5" (click)="clearPin()">Limpar</button>
+						<button class="btn btn-success col-5" (click)="submitPin()">Confirmar</button>
+					</div>
+				</div>
+				<br />
+				<div>
+					<div class="conteiner-flex candidato" *ngIf="candidato">
+						<h5>{{ candidato.nomeCompleto }}</h5>
+						<img
+							[src]="'http://localhost:8080/fotoCandidato/' + candidato.foto"
+							alt="{{ candidato.nomeCompleto }}"
+							class="rounded-pic"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+}

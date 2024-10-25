@@ -4,12 +4,13 @@ import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { Router } from '@angular/router';
 import { Login } from '../../../models/login';
 import { FormsModule, NgModel } from '@angular/forms';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MdbFormsModule, MdbCollapseModule, FormsModule],
+  imports: [MdbFormsModule, MdbCollapseModule, FormsModule, NavbarComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -17,6 +18,10 @@ import Swal from 'sweetalert2'
 export class LoginComponent {
   login: Login = new Login();
   router = inject(Router)
+
+  votar() {
+      this.router.navigate(['/votar'])
+    }
 
   authenticar() {
     if (this.login.username == "admin" && this.login.senha == "admin") {

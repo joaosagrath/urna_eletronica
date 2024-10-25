@@ -7,10 +7,12 @@ import { EleitorFormComponent } from './components/eleitor/eleitor-form/eleitor-
 import { CandidatoFormComponent } from './components/candidato/candidato-form/candidato-form.component';
 import { CandidatoListComponent } from './components/candidato/candidato-list/candidato-list.component';
 import { ApuracaoListComponent } from './components/apuracao/apuracao-list/apuracao-list.component';
+import { UrnaComponent } from './components/urna/urna.component';
 
 export const routes: Routes = [
     {path: '', component: LoginComponent},
     {path: "login", component: LoginComponent},
+    {path: "votar", component: UrnaComponent},
     {
         path: 'home', component: HomeComponent,
         children: [

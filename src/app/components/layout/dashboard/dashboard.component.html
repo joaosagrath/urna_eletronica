@@ -1,42 +1,34 @@
-<br>
 <div class="container-flex container-top">
     <div>
-        <ngx-charts-bar-horizontal
-            [view]="[600, 200]"
-            [results]="graficoPrefeito"
-            [gradient]="false"
-            [xAxis]="true"
-            [yAxis]="true"
-            [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
-            [xAxisLabel]="'Prefeito'"
-            [yAxisLabel]="'Votos'">
-        </ngx-charts-bar-horizontal>
-        <br>
-        <ngx-charts-bar-horizontal
-            [view]="[600, 200]"
-            [results]="graficoPrefeito"
-            [gradient]="false"
-            [xAxis]="true"
-            [yAxis]="true"
-            [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
-            [xAxisLabel]="'Prefeito'"
-            [yAxisLabel]="'Votos'">
-        </ngx-charts-bar-horizontal>
-
-
-    </div>
-    
-    <ngx-charts-bar-horizontal
-        [view]="[600, 400]"
-        [results]="graficoVereador"
+      <!-- Gráfico de Eleitores -->
+      <ngx-charts-bar-horizontal
+        [view]="[600, 200]"
+        [results]="graficoEleitores"
         [gradient]="false"
         [xAxis]="true"
         [yAxis]="true"
         [showXAxisLabel]="true"
         [showYAxisLabel]="true"
-        [xAxisLabel]="'Vereador'"
-        [yAxisLabel]="'Votos'">
-    </ngx-charts-bar-horizontal>
-</div>
+        [xAxisLabel]="'Número de Eleitores'"
+        [yAxisLabel]="'Eleitor'"
+        [barPadding]="8">
+      </ngx-charts-bar-horizontal>
+  
+      <br>
+  
+      <!-- Gráfico de Candidatos -->
+      <ngx-charts-bar-horizontal
+        [view]="[600, 200]"
+        [results]="graficoCandidatos"
+        [gradient]="false"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Votos Totais'"
+        [yAxisLabel]="'Candidato'"
+        [barPadding]="8">
+      </ngx-charts-bar-horizontal>
+    </div>
+  </div>
+  

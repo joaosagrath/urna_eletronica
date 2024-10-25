@@ -28,9 +28,17 @@
                 </td>
                 
                   <td [width]="250">
-                  <button type="button" class="btn btn-warning btn-floating" mdbRipple>
+                  
+                  
+                    <!-- <button type="button" class="btn btn-warning btn-floating" 
+                  (click)="editCandidato(candidato)">
                     <i class="fas fa-pen"></i>
-                  </button>
+                  </button> -->
+                  
+                  <a (click)="editar(candidato)" class="btn btn-warning btn-floating">
+                    <i class="fas fa-pen"></i>
+                </a>
+                  
                   <button type="button" class="btn btn-danger btn-floating" mdbRipple>
                     <i class="far fa-trash-can"></i>
                   </button>
@@ -40,7 +48,7 @@
         </tbody>
     </table>
     
-    
+    <!-- 
     <div class="row display-mobile">
       <div class="col-12 card-block">
         
@@ -57,9 +65,15 @@
                 <div class="col-5 text-center p-2">
                   <img *ngIf="candidato.foto" [src]="'http://localhost:8080/fotoCandidato/' + candidato.foto"
                     alt="Foto do Candidato" style="width: 150px; height: auto;" class="img-fluid rounded-pic"/>
+                    
+                    
                     <button type="button" class="btn btn-warning btn-floating me-2" mdbRipple>
                       <i class="fas fa-pen"></i>
                     </button>
+
+
+                    
+                    
                     <button type="button" class="btn btn-danger btn-floating" mdbRipple>
                       <i class="far fa-trash-can"></i>
                     </button>
@@ -71,3 +85,18 @@
         
       </div>
     </div>
+
+    -->
+
+    
+<ng-template #modalCandidatosForm>
+	<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Editar Candidato</h5>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+	</div>
+	<div class="modal-body">
+		<app-candidato-form [isModalOpen]="true" [candidato]="candidatoEdit" (candidatoSalvo)="retornoForm()"></app-candidato-form>
+	</div>
+</ng-template>
+
+

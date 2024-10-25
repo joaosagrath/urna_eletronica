@@ -1,3 +1,23 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.card{
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.container {
+  padding-top: 56px; /* Ajuste conforme a altura da sua navbar */
+  width: 100%;
+  max-width: 400px;
+}
 
 .container-top {
     padding-top: 56px; /* Ajuste conforme a altura da sua navbar */
@@ -12,5 +32,6 @@
 .form-outline {
     margin: 0px 10px 0 0;
     position: relative;
-    width: 81%;
+    width: 100%;
 }
+

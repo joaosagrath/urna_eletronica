@@ -1,16 +1,34 @@
-
 .container-top {
     padding-top: 56px; /* Ajuste conforme a altura da sua navbar */
 }
 
-.conteiner-flex{
+.container-top-modal {
+    padding-top: 0; /* Ajuste conforme a altura da sua navbar */
+}
+
+.conteiner-flex {
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
 
+.conteiner-modal {
+    width: 100%;
+    display: block;
+}
+
 .form-outline {
     margin: 0px 10px 0 0;
     position: relative;
-    width: 81%;
+    width: 100%;
+}
+
+.form-outline-modal {
+    width: 80%;
+}
+
+.classe-modal-aberta{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }

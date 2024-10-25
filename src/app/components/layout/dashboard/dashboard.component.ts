@@ -2,17 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule } from '@angular/common/http';
-import { ApuracaoService } from '../../../services/apuracao.service';
-import { withFetch } from '@angular/common/http'; // Adicione isso
-
-interface Candidato {
-  id: number;
-  nomeCompleto: string;
-  numero: number;
-  cargo: string;
-  status: string;
-  votosTotais: number;
-}
+import { EleitoresService } from '../../../services/eleitores.service';
+import { CandidatosService } from '../../../services/candidatos.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,50 +13,61 @@ interface Candidato {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  candidatosPrefeito: Candidato[] = [];
-  candidatosVereador: Candidato[] = [];
-  
-  // Adiciona arrays separados para os gráficos
-  graficoPrefeito: { name: string; value: number; }[] = [];
-  graficoVereador: { name: string; value: number; }[] = [];
 
+  // Arrays para armazenar os dados formatados
+  graficoEleitores: any[] = [];
+  graficoCandidatos: any[] = [];
+
+  // Configuração de cores
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private apuracaoService: ApuracaoService) {}
+  constructor(
+    private eleitoresService: EleitoresService,
+    private candidatosService: CandidatosService
+  ) {}
 
   ngOnInit(): void {
-    this.apuracaoService.getApuracao().subscribe({
-      next: data => {
-        // console.log('Resposta da API:', data);
-  
-        if (data && data.candidatosPrefeito && data.candidatosVereador) {
-          
-          this.candidatosPrefeito = data.candidatosPrefeito;
-          this.candidatosVereador = data.candidatosVereador;
-  
-          this.graficoPrefeito = this.candidatosPrefeito.map((candidato: Candidato) => ({
-            name: candidato.nomeCompleto,
-            value: candidato.votosTotais
-          }));
-  
-          this.graficoVereador = this.candidatosVereador.map((candidato: Candidato) => ({
-            name: candidato.nomeCompleto,
-            value: candidato.votosTotais
-          }));
-  
-          // console.log('Grafico Prefeito:', this.graficoPrefeito);
-          // console.log('Grafico Vereador:', this.graficoVereador);
-       
-        } else {
-          //console.error('Dados da API estão no formato incorreto ou vazios.');
-        }
-      },
-      error: (error) => {
-        console.error('Ocorreu um erro ao buscar a apuração:', error);
-        alert('Erro ao carregar a apuração. Verifique sua conexão ou tente novamente mais tarde.');
-      }
+    this.carregarEleitores();
+    this.carregarCandidatos();
+  }
+
+  // Método para carregar e agrupar dados dos eleitores por status
+  carregarEleitores() {
+    this.eleitoresService.getAllEleitores().subscribe((eleitores) => {
+      // Define um tipo para armazenar as contagens de status
+      const eleitoresPorStatus: { [key: string]: number } = {};
+
+      // Agrupa eleitores por status e conta a quantidade de cada status
+      eleitores.forEach(eleitor => {
+        eleitoresPorStatus[eleitor.status] = (eleitoresPorStatus[eleitor.status] || 0) + 1;
+      });
+
+      // Converte o objeto agrupado em um array para o gráfico
+      this.graficoEleitores = Object.keys(eleitoresPorStatus).map(status => ({
+        name: status,
+        value: eleitoresPorStatus[status]
+      }));
+    });
+  }
+
+  // Método para carregar e agrupar dados dos candidatos por status
+  carregarCandidatos() {
+    this.candidatosService.getAllCandidatos().subscribe((candidatos) => {
+      // Define um tipo para armazenar as contagens de status
+      const candidatosPorStatus: { [key: string]: number } = {};
+
+      // Agrupa candidatos por status e conta a quantidade de cada status
+      candidatos.forEach(candidato => {
+        candidatosPorStatus[candidato.status] = (candidatosPorStatus[candidato.status] || 0) + 1;
+      });
+
+      // Converte o objeto agrupado em um array para o gráfico
+      this.graficoCandidatos = Object.keys(candidatosPorStatus).map(status => ({
+        name: status,
+        value: candidatosPorStatus[status]
+      }));
     });
   }
 
