@@ -68,7 +68,7 @@ export class EleitorListComponent {
 	deleteById(eleitor: Eleitor) {}
 
 	onEleitorSalvo(): void {
-		console.log('Evento candidatoSalvo capturado. Atualizando a lista...');
+		console.log('Evento Eleitor capturado. Atualizando a lista...');
 
 		this.modalRef.close();
 

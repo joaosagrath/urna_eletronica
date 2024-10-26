@@ -26,4 +26,8 @@ export class EleitoresService {
   salvarEleitor(formData: FormData): Observable<Eleitor> {
     return this.http.post<Eleitor>(`${this.API}/salvar`, formData);
   }
+
+  editarEleitor(formData: FormData): Observable<Eleitor> {
+    return this.http.post<Eleitor>(`${this.API}/salvar`, formData);
+  }
 }

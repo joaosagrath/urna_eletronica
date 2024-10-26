@@ -70,7 +70,14 @@ export class EleitorFormComponent {
 		}
 	}
 
+	nomeValidado: boolean = false;
+	fotoValidada: boolean = false;
+
 	salvarEleitor() {
+		// Ativa a validação dos campos obrigatórios
+		this.nomeValidado = !this.eleitor.nomeCompleto;
+		this.fotoValidada = !this.selectedFile;
+
 		console.log('Nome: ' + this.eleitor.nomeCompleto);
 		console.log('CPF: ' + this.eleitor.cpf);
 		console.log('Profissão: ' + this.eleitor.profissao);
@@ -106,12 +113,60 @@ export class EleitorFormComponent {
 
 		this.eleitoresService.salvarEleitor(formData).subscribe({
 			next: (response) => {
-
-                this.eleitorSalvo.emit(response);
-
-				Swal.fire('Sucesso!', 'Eleitor salvo com sucesso!', 'success');
+				Swal.fire('Sucesso!', 'Eleitor salvo com sucesso! HAUHAUHAU', 'success');
 				this.limparFormulario();
-				this.eleitorSalvo.emit();
+				this.eleitorSalvo.emit(response);
+			},
+			error: (error) => {
+				console.error('Erro ao salvar eleitor:', error);
+				Swal.fire('Erro!', 'Houve um problema ao salvar o eleitor.', 'error');
+			},
+		});
+	}
+
+	editarEleitor() {
+		// Ativa a validação dos campos obrigatórios
+		this.nomeValidado = !this.eleitor.nomeCompleto;
+		this.fotoValidada = !this.selectedFile;
+
+		console.log('Nome: ' + this.eleitor.nomeCompleto);
+		console.log('CPF: ' + this.eleitor.cpf);
+		console.log('Profissão: ' + this.eleitor.profissao);
+		console.log('Celular: ' + this.eleitor.telefoneCelular);
+		console.log('Telefone: ' + this.eleitor.telefoneFixo);
+		console.log('Email: ' + this.eleitor.email);
+		console.log('Foto: ', this.selectedFile); // Log para verificar o arquivo selecionado
+
+		// Aplica a formatação correta aos campos antes de enviar
+		this.eleitor.cpf = this.formatarCPF(this.eleitor.cpf);
+		this.eleitor.telefoneCelular = this.formatarCelular(this.eleitor.telefoneCelular);
+		this.eleitor.telefoneFixo = this.formatarTelefone(this.eleitor.telefoneFixo);
+		this.eleitor.email = this.formatarEmail(this.eleitor.email);
+
+		const formData = new FormData();
+		formData.append(
+			'eleitor',
+			new Blob([JSON.stringify(this.eleitor)], {
+				type: 'application/json',
+			})
+		);
+
+		// Verifica se selectedFile não é null antes de adicionar ao formData
+		if (this.selectedFile) {
+			formData.append('foto', this.selectedFile);
+		} else {
+			console.warn('Nenhum arquivo selecionado para enviar.');
+		}
+
+		if (this.eleitor.status) {
+			this.eleitor.status = 'VERIFICAR';
+		}
+
+		this.eleitoresService.editarEleitor(formData).subscribe({
+			next: (response) => {
+				Swal.fire('Sucesso!', 'Eleitor salvo com sucesso! HAUHAUHAU', 'success');
+				this.limparFormulario();
+				this.eleitorSalvo.emit(response);
 			},
 			error: (error) => {
 				console.error('Erro ao salvar eleitor:', error);

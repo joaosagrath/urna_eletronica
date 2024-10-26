@@ -10,7 +10,9 @@
 	class="container"
 >
 	<mdb-form-control style="margin-bottom: 10px">
-		<input mdbInput type="text" name="eleitorNome" class="form-control" [(ngModel)]="eleitor.nomeCompleto" />
+		<input mdbInput type="text" name="eleitorNome" class="form-control"
+		 [(ngModel)]="eleitor.nomeCompleto" [ngClass]="{'invalid-field': !eleitor.nomeCompleto && nomeValidado}"
+		 />
 		<label mdbLabel class="form-label" for="eleitorNome">Nome do Eleitor</label>
 	</mdb-form-control>
 
@@ -50,9 +52,16 @@
 	</mdb-form-control>
 
 	<mdb-form-control style="margin-bottom: 10px">
-		<input type="file" mdbInput name="foto" class="form-control" (change)="onFileChange($event)" />
+		<input type="file" mdbInput name="foto" class="form-control"
+		 (change)="onFileChange($event)"  [ngClass]="{'invalid-field': !selectedFile && fotoValidada}" />
 		<label mdbLabel class="form-label" for="foto"></label>
 	</mdb-form-control>
 
-	<button style="margin-bottom: 10px" class="btn btn-outline-primary botaozao" type="button" (click)="salvarEleitor()" data-mdb-ripple-color="dark">Salvar</button>
+	@if (this.eleitor.id > 0){
+		<button style="margin-bottom: 10px" class="btn btn-outline-primary" 
+			type="button" (click)="editarEleitor()" data-mdb-ripple-color="dark">Salvar Edições</button>
+	} @else{
+		<button style="margin-bottom: 10px" class="btn btn-outline-primary" 
+		type="button" (click)="salvarEleitor()" data-mdb-ripple-color="dark">Salvar</button>
+	}
 </div>

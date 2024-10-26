@@ -20,6 +20,7 @@ export class UrnaService {
   }
 
   enviarVoto(eleitorId: number | null, votacao: any) {
+    
     console.log(`${this.API}/votos/${eleitorId}`);
 
     return this.http.post(`${this.API}/votos/${eleitorId}`, votacao, {

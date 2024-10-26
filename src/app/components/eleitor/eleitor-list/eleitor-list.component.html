@@ -1,4 +1,4 @@
-<app-eleitor-form (eleitorSalvo)="onEleitorSalvo()"></app-eleitor-form>
+<app-eleitor-form (eleitorSalvo)="retornoForm()"></app-eleitor-form>
 <br />
 <div class="container">
 	<table class="table align-middle table-sm bg-primary bg-gradient text-white">
@@ -40,13 +40,15 @@
 					/>
 				</td>
 				<td>
-					<a (click)="editar(eleitor)" class="btn btn-warning btn-floating">
-						<i class="fas fa-pen"></i>
-					</a>
-
-					<button id="deletarEleitor" type="button" class="btn btn-danger btn-floating" mdbRipple (click)="deleteById(eleitor)">
-						<i class="far fa-trash-can"></i>
-					</button>
+					<div class="btn-flex">
+						<a (click)="editar(eleitor)" class="btn btn-warning btn-floating">
+							<i class="fas fa-pen"></i>
+						</a>
+						<button id="deletarEleitor" type="button" class="btn btn-danger btn-floating" mdbRipple (click)="deleteById(eleitor)">
+							<i class="far fa-trash-can"></i>
+						</button>
+					</div>
+					
 				</td>
 			</tr>
 			}
